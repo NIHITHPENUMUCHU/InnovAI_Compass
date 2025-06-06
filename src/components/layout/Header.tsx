@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, Sun, Moon } from 'lucide-react';
+import { Compass, Sun, Moon, Lock } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { motion } from 'framer-motion';
 
@@ -13,20 +13,21 @@ export const Header = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3">
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ 
-                type: "spring",
-                stiffness: 260,
-                damping: 20
+              animate={{ 
+                rotate: 360
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "linear"
               }}
               className="relative"
             >
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full blur-lg opacity-75 animate-pulse-glow"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full blur-lg opacity-75"></div>
               <div className="relative bg-white dark:bg-gray-800 rounded-full p-2">
                 <Compass 
                   size={32} 
-                  className="text-primary-600 dark:text-primary-400 animate-float"
+                  className="text-primary-600 dark:text-primary-400"
                 />
               </div>
             </motion.div>
@@ -60,6 +61,13 @@ export const Header = () => {
               >
                 About
               </Link>
+              <Link 
+                to="/admin" 
+                className="flex items-center space-x-1 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300"
+              >
+                <Lock size={16} />
+                <span>Admin</span>
+              </Link>
             </motion.div>
             
             <motion.button
@@ -75,6 +83,38 @@ export const Header = () => {
             >
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
+
+            {/* Mobile menu button */}
+            <button className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+              <span className="sr-only">Open menu</span>
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            <Link 
+              to="/categories" 
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+            >
+              Categories
+            </Link>
+            <Link 
+              to="/about" 
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+            >
+              About
+            </Link>
+            <Link 
+              to="/admin" 
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+            >
+              Admin
+            </Link>
           </div>
         </div>
       </nav>
