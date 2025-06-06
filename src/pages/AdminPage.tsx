@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { supabase } from '../lib/supabase';
 
 interface AdminFormData {
   email: string;
   password: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
 }
 
 export const AdminPage = () => {
@@ -79,6 +84,27 @@ export const AdminPage = () => {
 const ToolManagement = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [success, setSuccess] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [categoryError, setCategoryError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('categories')
+          .select('id, name');
+        
+        if (error) throw error;
+        
+        setCategories(data || []);
+      } catch (err) {
+        console.error('Error fetching categories:', err);
+        setCategoryError('Failed to load categories');
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const onSubmit = async (data: any) => {
     try {
@@ -89,8 +115,8 @@ const ToolManagement = () => {
         developer: data.developer,
         pricing_type: data.pricing_type,
         pricing_amount: data.pricing_amount,
-        features: data.features.split('\n'),
-        screenshots: data.screenshots.split('\n'),
+        features: data.features.split('\n').filter(Boolean),
+        screenshots: data.screenshots.split('\n').filter(Boolean),
         video_url: data.video_url,
         website_url: data.website_url,
         release_date: data.release_date
@@ -145,12 +171,23 @@ const ToolManagement = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Category ID
+              Category
             </label>
-            <input
-              {...register('category_id', { required: true })}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
-            />
+            {categoryError ? (
+              <p className="text-red-500 text-sm">{categoryError}</p>
+            ) : (
+              <select
+                {...register('category_id', { required: true })}
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
+              >
+                <option value="">Select a category</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -173,6 +210,7 @@ const ToolManagement = () => {
               {...register('pricing_type', { required: true })}
               className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
             >
+              <option value="">Select pricing type</option>
               <option value="free">Free</option>
               <option value="freemium">Freemium</option>
               <option value="paid">Paid</option>
