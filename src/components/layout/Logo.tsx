@@ -6,17 +6,16 @@ export const Logo = () => {
   return (
     <motion.div
       animate={{ 
-        rotate: [0, 360, 0, -360, 0],
-        scale: [1, 1.1, 1, 1.1, 1]
+        rotate: 360
       }}
       transition={{
-        duration: 20,
+        duration: 10,
         repeat: Infinity,
         ease: "linear"
       }}
       className="relative w-10 h-10"
     >
-      <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full blur opacity-75 animate-pulse-glow"></div>
+      <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full blur opacity-75"></div>
       <div className="relative bg-white dark:bg-gray-800 rounded-full p-2">
         <Compass
           size={24}

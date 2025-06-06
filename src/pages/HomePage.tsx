@@ -26,7 +26,6 @@ export const HomePage = () => {
       return matchesSearch && matchesCategory;
     });
 
-    // Sort tools
     filtered = filtered.sort((a, b) => {
       if (sortBy === 'latest') {
         return new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime();
@@ -43,6 +42,24 @@ export const HomePage = () => {
   const currentTools = filteredTools.slice(indexOfFirstTool, indexOfLastTool);
   const totalPages = Math.ceil(filteredTools.length / toolsPerPage);
 
+  const HoverableText = ({ text }: { text: string }) => (
+    <div className="flex">
+      {text.split('').map((char, idx) => (
+        <motion.span
+          key={idx}
+          className="inline-block"
+          whileHover={{
+            y: -5,
+            color: '#06b6d4',
+            transition: { duration: 0.2 }
+          }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
+    </div>
+  );
+
   return (
     <div className="space-y-8 animate-fade-in">
       <motion.div 
@@ -52,8 +69,8 @@ export const HomePage = () => {
         transition={{ duration: 0.6 }}
       >
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-          Navigate the Future with
-          <span className="text-gradient block mt-2">InnovAI Compass</span>
+          <HoverableText text="Navigate the Future with" />
+          <HoverableText text="InnovAI Compass" />
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           Your guide to discovering cutting-edge AI tools that shape tomorrow's innovation.
