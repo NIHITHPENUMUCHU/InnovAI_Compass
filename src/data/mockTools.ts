@@ -38,7 +38,6 @@ export const tools: Tool[] = [
       }
     ]
   },
-  // Adding 29 more tools with similar structure...
   {
     id: '2',
     name: 'Midjourney V6',
@@ -76,5 +75,41 @@ export const tools: Tool[] = [
       }
     ]
   },
-  // ... Adding 28 more tools with similar detailed structure
+  {
+    id: '40',
+    name: 'Anthropic Claude 3 Opus',
+    description: 'Released on 2024-03-04: The most capable Claude model, with enhanced reasoning and broader expertise',
+    category: { id: '1', name: 'Text Generation', icon: 'message-square', description: 'AI tools for generating and processing text' },
+    developer: 'Anthropic',
+    pricing: { type: 'paid', startingPrice: '$30/month' },
+    features: [
+      'Advanced reasoning and analysis',
+      'Complex task handling',
+      'Code generation and review',
+      'Research assistance',
+      'Multilingual support'
+    ],
+    screenshots: [
+      'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg',
+      'https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg'
+    ],
+    videoUrl: 'https://www.youtube.com/watch?v=example',
+    websiteUrl: 'https://www.anthropic.com',
+    rating: 4.9,
+    reviewCount: 250,
+    lastUpdated: '2024-03-04',
+    releaseDate: '2024-03-04',
+    tutorialSteps: [
+      {
+        title: 'Get Started',
+        description: 'Sign up for Claude 3 Opus',
+        imageUrl: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg'
+      },
+      {
+        title: 'Explore Capabilities',
+        description: 'Learn about advanced features',
+        imageUrl: 'https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg'
+      }
+    ]
+  }
 ];
