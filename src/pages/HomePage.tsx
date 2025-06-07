@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 export const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [sortBy, setSortBy] = useState<'latest' | 'rating'>('latest');
+  const [sortBy, setSortBy] = useState<'latest' | 'rating' | 'updated'>('latest');
   const [filteredTools, setFilteredTools] = useState<Tool[]>(tools);
   const [currentPage, setCurrentPage] = useState(1);
   const toolsPerPage = 15;
@@ -29,8 +29,12 @@ export const HomePage = () => {
     filtered = filtered.sort((a, b) => {
       if (sortBy === 'latest') {
         return new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime();
+      } else if (sortBy === 'rating') {
+        return b.rating - a.rating;
+      } else if (sortBy === 'updated') {
+        return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime();
       }
-      return b.rating - a.rating;
+      return 0;
     });
 
     setFilteredTools(filtered);
@@ -43,7 +47,7 @@ export const HomePage = () => {
   const totalPages = Math.ceil(filteredTools.length / toolsPerPage);
 
   const HoverableText = ({ text }: { text: string }) => (
-    <div className="flex">
+    <div className="flex flex-wrap">
       {text.split('').map((char, idx) => (
         <motion.span
           key={idx}
@@ -70,6 +74,7 @@ export const HomePage = () => {
       >
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
           <HoverableText text="Navigate the Future with" />
+          <br />
           <HoverableText text="InnovAI Compass" />
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -79,18 +84,19 @@ export const HomePage = () => {
 
       <SearchBar onSearch={setSearchQuery} />
       
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <CategoryFilter
           selectedCategory={selectedCategory}
           onCategoryChange={setSelectedCategory}
         />
         <select
           value={sortBy}
-          onChange={(e) => setSortBy(e.target.value as 'latest' | 'rating')}
+          onChange={(e) => setSortBy(e.target.value as 'latest' | 'rating' | 'updated')}
           className="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
         >
           <option value="latest">Latest Release</option>
           <option value="rating">Highest Rated</option>
+          <option value="updated">Recently Updated</option>
         </select>
       </div>
 
@@ -104,23 +110,25 @@ export const HomePage = () => {
         <>
           <ToolGrid tools={currentTools} />
           
-          <div className="flex justify-center space-x-2 mt-8">
-            {Array.from({ length: totalPages }, (_, i) => (
-              <motion.button
-                key={i + 1}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setCurrentPage(i + 1)}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  currentPage === i + 1
-                    ? 'bg-primary-600 text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                }`}
-              >
-                {i + 1}
-              </motion.button>
-            ))}
-          </div>
+          {totalPages > 1 && (
+            <div className="flex justify-center space-x-2 mt-8">
+              {Array.from({ length: totalPages }, (_, i) => (
+                <motion.button
+                  key={i + 1}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={`px-4 py-2 rounded-lg transition-colors ${
+                    currentPage === i + 1
+                      ? 'bg-primary-600 text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                  }`}
+                >
+                  {i + 1}
+                </motion.button>
+              ))}
+            </div>
+          )}
         </>
       )}
     </div>

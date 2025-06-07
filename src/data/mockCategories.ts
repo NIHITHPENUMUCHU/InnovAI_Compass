@@ -24,5 +24,11 @@ export const categories: Category[] = [
     name: 'Audio & Speech',
     icon: 'mic',
     description: 'Voice synthesis and audio processing tools'
+  },
+  {
+    id: '5',
+    name: 'Website Making',
+    icon: 'globe',
+    description: 'AI tools for creating and enhancing websites'
   }
 ];
