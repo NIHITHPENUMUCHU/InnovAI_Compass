@@ -1084,7 +1084,7 @@ export const tools: Tool[] = [
     ]
   },
 
-  // Additional tools to reach 30
+  // Additional tool to reach 30
   {
     id: '30',
     name: 'Claude 3',

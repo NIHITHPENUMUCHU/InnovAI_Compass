@@ -15,9 +15,10 @@ export const ToolCard: React.FC<ToolCardProps> = ({ tool, index }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group"
     >
       <Link to={`/tool/${tool.id}`}>
-        <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden card-hover">
+        <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden card-hover shadow-lg">
           <div className="relative">
             <img 
               src={tool.screenshots[0]} 
