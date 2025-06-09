@@ -128,7 +128,7 @@ export const tools: Tool[] = [
       'SEO tools'
     ],
     screenshots: [
-      'https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg',
+      'https://www.toolpilot.ai/cdn/shop/files/1c4478971ba3d451281922e914e4ce33.png?v=1691070904',
       'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg'
     ],
     videoUrl: 'https://www.youtube.com/watch?v=example',
