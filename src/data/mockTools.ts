@@ -215,7 +215,7 @@ export const tools: Tool[] = [
       {
         title: 'Describe Your Site',
         description: 'Tell Framer what kind of website you want',
-        imageUrl: 'https://images.pexels.com/photos/326508/pexels-photo-326508.jpeg'
+        imageUrl: 'https://framerusercontent.com/images/taEIqG4IODOLsMpmFmsybWAN6G8.png?scale-down-to=1024'
       },
       {
         title: 'Generate & Customize',
