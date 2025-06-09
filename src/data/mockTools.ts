@@ -203,7 +203,8 @@ export const tools: Tool[] = [
     ],
     screenshots: [
       'https://framerusercontent.com/images/taEIqG4IODOLsMpmFmsybWAN6G8.png?scale-down-to=1024',
-      'https://www.framer.com/creators-assets/_next/image/?url=https%3A%2F%2Fy4pdgnepgswqffpt.public.blob.vercel-storage.com%2Ftemplates%2F49015%2Felements-uxT36v1xzM9B3xlID3iSxVOZYw5H0G&w=3840&q=100'
+      'https://www.framer.com/creators-assets/_next/image/?url=https%3A%2F%2Fy4pdgnepgswqffpt.public.blob.vercel-storage.com%2Ftemplates%2F49015%2Felements-uxT36v1xzM9B3xlID3iSxVOZYw5H0G&w=3840&q=100',
+      'https://framerusercontent.com/images/ypWOno0AGfJ1cu1yYm228sWO6Y.jpg'
     ],
     videoUrl: 'https://www.youtube.com/watch?v=LLPFQicKDPA',
     websiteUrl: 'https://framer.com',
@@ -215,7 +216,7 @@ export const tools: Tool[] = [
       {
         title: 'Describe Your Site',
         description: 'Tell Framer what kind of website you want',
-        imageUrl: 'https://framerusercontent.com/images/ypWOno0AGfJ1cu1yYm228sWO6Y.jpg'
+        imageUrl: 'https://cdn.mos.cms.futurecdn.net/knTaMjacC2sUFBhuYkZg3j-1200-80.png'
       },
       {
         title: 'Generate & Customize',
