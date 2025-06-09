@@ -514,7 +514,7 @@ export const tools: Tool[] = [
       {
         title: 'Enable AI',
         description: 'Activate Notion AI in your workspace',
-        imageUrl: 'https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg'
+        imageUrl: 'https://thomasjfrank.com/wp-content/uploads/2022/11/image-4.png'
       },
       {
         title: 'Use AI Commands',
