@@ -190,7 +190,7 @@ export const tools: Tool[] = [
   {
     id: '6',
     name: 'Framer AI',
-    description: 'Released on 2024-03-12: AI-powered website generator that creates responsive websites from simple text prompts',
+    description: 'Released on 2024-03-12: Framer AI is a tool within Framer, a no-code website builder, that uses artificial intelligence to generate websites and enhance design elements',
     category: { id: '5', name: 'Website Making', icon: 'globe', description: 'AI tools for creating and enhancing websites' },
     developer: 'Framer',
     pricing: { type: 'freemium', startingPrice: '$5/month' },
