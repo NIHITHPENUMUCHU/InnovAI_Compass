@@ -501,7 +501,7 @@ export const tools: Tool[] = [
       'Content summarization'
     ],
     screenshots: [
-      'https://i.ytimg.com/vi/FElBbgnNtVA/maxresdefault.jpg',
+      'https://i.ytimg.com/vi/FElBbgnNtVA/maxresdefault.jpg&w=3840&q=100',
       'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg'
     ],
     videoUrl: 'https://www.youtube.com/watch?v=example',
