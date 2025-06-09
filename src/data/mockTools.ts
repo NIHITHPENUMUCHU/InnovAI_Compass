@@ -205,7 +205,7 @@ export const tools: Tool[] = [
       'https://framerusercontent.com/images/taEIqG4IODOLsMpmFmsybWAN6G8.png?scale-down-to=1024',
       'https://www.framer.com/creators-assets/_next/image/?url=https%3A%2F%2Fy4pdgnepgswqffpt.public.blob.vercel-storage.com%2Ftemplates%2F49015%2Felements-uxT36v1xzM9B3xlID3iSxVOZYw5H0G&w=3840&q=100'
     ],
-    videoUrl: 'https://www.youtube.com/watch?v=example',
+    videoUrl: 'https://www.youtube.com/watch?v=LLPFQicKDPA',
     websiteUrl: 'https://framer.com',
     rating: 4.8,
     reviewCount: 2200,
