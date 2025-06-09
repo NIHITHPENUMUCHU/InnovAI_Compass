@@ -17,7 +17,7 @@ export const tools: Tool[] = [
       'Drag-and-drop editor'
     ],
     screenshots: [
-      'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg',
+      'https://cdn.prod.website-files.com/64246652f82179d277df81be/6499a7cfa4a9263ca8e2d0ad_blog-47.jpg',
       'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg'
     ],
     videoUrl: 'https://www.youtube.com/watch?v=example',
