@@ -141,7 +141,7 @@ export const tools: Tool[] = [
       {
         title: 'Choose Template',
         description: 'Select from hundreds of templates',
-        imageUrl: 'https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg'
+        imageUrl: 'https://blog-cdn.quarkly.io/2023/03/Review-of-Zyro-Comprehensive-Analysis-of-This-All-In-One-Website-Builder.png'
       },
       {
         title: 'Use AI Tools',
