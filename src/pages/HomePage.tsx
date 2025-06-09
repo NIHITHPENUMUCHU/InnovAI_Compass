@@ -65,7 +65,7 @@ export const HomePage = () => {
   );
 
   return (
-    <div className="space-y-11 animate-fade-in">
+    <div className="space-y-8 animate-fade-in">
       <motion.div 
         className="text-center space-y-6"
         initial={{ opacity: 0, y: 20 }}
