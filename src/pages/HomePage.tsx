@@ -74,7 +74,6 @@ export const HomePage = () => {
       >
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
           <HoverableText text="Navigate the Future with" />
-          <br />
           <HoverableText text="InnovAI Compass" />
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
