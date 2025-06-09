@@ -209,15 +209,7 @@ export const tools: Tool[] = [
     websiteUrl: 'https://framer.com',
     rating: 4.8,
     reviewCount: 200,
-    lastUpdated: 'May Update. May 28, 2025. ...,
-Font Drop 8. May 23, 2025. ...,
-Wireframer. May 21, 2025. ...,
-Vectors. May 21, 2025. ...,
-Advanced Analytics. May 21, 2025. ...,
-Workshop. May 21, 2025. ...,
-Plugins 3.2: Redirects. May 6, 2025. ...,
-April Update: REM. May 1, 2025.
-',
+    lastUpdated: 'May Update. May 28, 2025',
     releaseDate: '2024-03-12',
     tutorialSteps: [
       {
