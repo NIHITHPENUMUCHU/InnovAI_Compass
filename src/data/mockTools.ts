@@ -220,7 +220,7 @@ export const tools: Tool[] = [
       {
         title: 'Generate & Customize',
         description: 'AI generates the site, then customize as needed',
-        imageUrl: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg'
+        imageUrl: 'https://miro.medium.com/v2/resize:fit:1400/1*XWWoOmKcvBRS2pNp7Ht98g.png'
       }
     ]
   },
