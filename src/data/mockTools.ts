@@ -208,7 +208,7 @@ export const tools: Tool[] = [
     videoUrl: 'https://www.youtube.com/watch?v=LLPFQicKDPA',
     websiteUrl: 'https://framer.com',
     rating: 4.8,
-    reviewCount: 2200,
+    reviewCount: 200,
     lastUpdated: '2024-03-12',
     releaseDate: '2024-03-12',
     tutorialSteps: [
