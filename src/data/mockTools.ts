@@ -146,7 +146,7 @@ export const tools: Tool[] = [
       {
         title: 'Use AI Tools',
         description: 'Generate content and logos with AI',
-        imageUrl: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg'
+        imageUrl: 'https://lh6.googleusercontent.com/67SUhWHCkfDmXz5NqYHjqtez6sLFYom4XnoMJUbFWQKj6oS3Sk4qeIyEuV8hfVSNAWmBl9yW3HI4cE-_GPq_hWckMv4qq0fw8ugMXMyb9zh7mgVSU5Y5ckYP18VUi6-zCFXMeKYwods8bCDpCYCKa3o'
       }
     ]
   },
