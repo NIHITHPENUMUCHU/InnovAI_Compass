@@ -211,7 +211,7 @@ export const tools: Tool[] = [
     rating: 4.8,
     reviewCount: 200,
     lastUpdated: 'May 28, 2025',
-    releaseDate: '2024-03-12',
+    releaseDate: 'June, 2023',
     tutorialSteps: [
       {
         title: 'Describe Your Site',
