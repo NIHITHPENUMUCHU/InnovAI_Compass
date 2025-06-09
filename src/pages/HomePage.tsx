@@ -73,8 +73,7 @@ export const HomePage = () => {
         transition={{ duration: 0.6 }}
       >
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-          <HoverableText text="Navigate the Future with" />
-          <HoverableText text="InnovAI Compass" />
+          <HoverableText text="Navigate the Future with InnovAI Compass" />
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           Your guide to discovering cutting-edge AI tools that shape tomorrow's innovation.
