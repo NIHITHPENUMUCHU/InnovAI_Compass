@@ -519,7 +519,7 @@ export const tools: Tool[] = [
       {
         title: 'Use AI Commands',
         description: 'Type "/" to access AI writing features',
-        imageUrl: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg'
+        imageUrl: 'https://www.notion.com/_next/image?url=https%3A%2F%2Fimg.youtube.com%2Fvi%2FRDZ3mY10zY8%2Fmaxresdefault.jpg&w=3840&q=100'
       }
     ]
   },
