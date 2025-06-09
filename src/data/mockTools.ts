@@ -502,7 +502,7 @@ export const tools: Tool[] = [
     ],
     screenshots: [
       'https://miro.medium.com/v2/resize:fit:1400/1*zO3_gZUlblbgsZUHFEsvZQ.png',
-      'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg'
+      'https://i.ytimg.com/vi/3ye-ocvVrKA/maxresdefault.jpg'
     ],
     videoUrl: 'https://www.youtube.com/watch?v=example',
     websiteUrl: 'https://notion.so',
