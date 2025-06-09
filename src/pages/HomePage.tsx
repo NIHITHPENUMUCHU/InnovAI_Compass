@@ -47,7 +47,7 @@ export const HomePage = () => {
   const totalPages = Math.ceil(filteredTools.length / toolsPerPage);
 
   const HoverableText = ({ text }: { text: string }) => (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap justify-center">
       {text.split('').map((char, idx) => (
         <motion.span
           key={idx}

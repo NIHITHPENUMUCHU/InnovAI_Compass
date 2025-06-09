@@ -1084,7 +1084,7 @@ export const tools: Tool[] = [
     ]
   },
 
-  // Additional tool to reach 30
+  // Additional 5 tools
   {
     id: '30',
     name: 'Claude 3',
@@ -1119,6 +1119,154 @@ export const tools: Tool[] = [
         title: 'Start chatting',
         description: 'Begin your conversation with Claude',
         imageUrl: 'https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg'
+      }
+    ]
+  },
+  {
+    id: '31',
+    name: 'Perplexity AI',
+    description: 'Released on 2024-01-08: AI-powered search engine that provides accurate answers with real-time information and citations',
+    category: { id: '1', name: 'Text Generation', icon: 'message-square', description: 'AI tools for generating and processing text' },
+    developer: 'Perplexity',
+    pricing: { type: 'freemium', startingPrice: '$20/month' },
+    features: [
+      'Real-time search results',
+      'Source citations',
+      'Follow-up questions',
+      'Multiple AI models',
+      'Academic mode'
+    ],
+    screenshots: [
+      'https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg',
+      'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg'
+    ],
+    videoUrl: 'https://www.youtube.com/watch?v=example',
+    websiteUrl: 'https://perplexity.ai',
+    rating: 4.7,
+    reviewCount: 3400,
+    lastUpdated: '2024-03-16',
+    releaseDate: '2024-01-08',
+    tutorialSteps: [
+      {
+        title: 'Ask Questions',
+        description: 'Type your question or search query',
+        imageUrl: 'https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg'
+      },
+      {
+        title: 'Get Cited Answers',
+        description: 'Receive answers with source citations',
+        imageUrl: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg'
+      }
+    ]
+  },
+  {
+    id: '32',
+    name: 'Stable Diffusion',
+    description: 'Released on 2022-08-22: Open-source AI image generator that creates high-quality images from text descriptions',
+    category: { id: '2', name: 'Image Creation', icon: 'image', description: 'AI-powered image generation and editing tools' },
+    developer: 'Stability AI',
+    pricing: { type: 'free' },
+    features: [
+      'Open-source model',
+      'High-quality image generation',
+      'Customizable parameters',
+      'Local installation',
+      'Community extensions'
+    ],
+    screenshots: [
+      'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg',
+      'https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg'
+    ],
+    videoUrl: 'https://www.youtube.com/watch?v=example',
+    websiteUrl: 'https://stability.ai',
+    rating: 4.6,
+    reviewCount: 7800,
+    lastUpdated: '2024-03-11',
+    releaseDate: '2022-08-22',
+    tutorialSteps: [
+      {
+        title: 'Install Software',
+        description: 'Download and install Stable Diffusion',
+        imageUrl: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg'
+      },
+      {
+        title: 'Generate Images',
+        description: 'Create images using text prompts',
+        imageUrl: 'https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg'
+      }
+    ]
+  },
+  {
+    id: '33',
+    name: 'Cursor',
+    description: 'Released on 2024-02-14: AI-first code editor built for pair programming with AI, featuring advanced code completion and chat',
+    category: { id: '3', name: 'Code Assistant', icon: 'code', description: 'AI tools for coding and development' },
+    developer: 'Cursor',
+    pricing: { type: 'freemium', startingPrice: '$20/month' },
+    features: [
+      'AI-first code editor',
+      'Advanced code completion',
+      'AI chat integration',
+      'Codebase understanding',
+      'Multi-file editing'
+    ],
+    screenshots: [
+      'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg',
+      'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg'
+    ],
+    videoUrl: 'https://www.youtube.com/watch?v=example',
+    websiteUrl: 'https://cursor.sh',
+    rating: 4.8,
+    reviewCount: 2100,
+    lastUpdated: '2024-03-13',
+    releaseDate: '2024-02-14',
+    tutorialSteps: [
+      {
+        title: 'Download Editor',
+        description: 'Install Cursor code editor',
+        imageUrl: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg'
+      },
+      {
+        title: 'Start Coding',
+        description: 'Begin coding with AI assistance',
+        imageUrl: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg'
+      }
+    ]
+  },
+  {
+    id: '34',
+    name: 'Speechify',
+    description: 'Released on 2024-01-12: AI-powered text-to-speech platform that converts any text into natural-sounding audio',
+    category: { id: '4', name: 'Audio & Speech', icon: 'mic', description: 'Voice synthesis and audio processing tools' },
+    developer: 'Speechify',
+    pricing: { type: 'freemium', startingPrice: '$11.58/month' },
+    features: [
+      'Natural text-to-speech',
+      'Speed control',
+      'Multiple voices',
+      'Document scanning',
+      'Offline listening'
+    ],
+    screenshots: [
+      'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg',
+      'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg'
+    ],
+    videoUrl: 'https://www.youtube.com/watch?v=example',
+    websiteUrl: 'https://speechify.com',
+    rating: 4.4,
+    reviewCount: 6200,
+    lastUpdated: '2024-03-09',
+    releaseDate: '2024-01-12',
+    tutorialSteps: [
+      {
+        title: 'Upload Text',
+        description: 'Add text or documents to convert',
+        imageUrl: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg'
+      },
+      {
+        title: 'Listen to Audio',
+        description: 'Play back your text as natural speech',
+        imageUrl: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg'
       }
     ]
   }

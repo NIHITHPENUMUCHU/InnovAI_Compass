@@ -8,7 +8,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">AI Tools Directory</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">InnovAI Compass</h3>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
               Discover and compare the best AI tools for your needs. Updated daily with the latest AI innovations.
             </p>
@@ -26,29 +26,29 @@ export const Footer = () => {
                   About Us
                 </Link>
               </li>
-              <li>
-                <Link to="/submit-tool" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-                  Submit a Tool
-                </Link>
-              </li>
             </ul>
           </div>
           <div>
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Categories</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/categories/text-generation" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                <Link to="/categories" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
                   Text Generation
                 </Link>
               </li>
               <li>
-                <Link to="/categories/image-creation" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                <Link to="/categories" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
                   Image Creation
                 </Link>
               </li>
               <li>
-                <Link to="/categories/code-assistant" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                <Link to="/categories" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
                   Code Assistant
+                </Link>
+              </li>
+              <li>
+                <Link to="/categories" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                  Website Making
                 </Link>
               </li>
             </ul>
@@ -70,7 +70,7 @@ export const Footer = () => {
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
           <p className="text-center text-gray-600 dark:text-gray-300 text-sm">
-            © {new Date().getFullYear()} AI Tools Directory. All rights reserved.
+            © {new Date().getFullYear()} InnovAI Compass. All rights reserved.
           </p>
         </div>
       </div>
