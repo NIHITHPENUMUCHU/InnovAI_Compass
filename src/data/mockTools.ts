@@ -209,7 +209,7 @@ export const tools: Tool[] = [
     websiteUrl: 'https://framer.com',
     rating: 4.8,
     reviewCount: 200,
-    lastUpdated: 'May Update. May 28, 2025',
+    lastUpdated: 'May 28, 2025',
     releaseDate: '2024-03-12',
     tutorialSteps: [
       {
