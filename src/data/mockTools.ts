@@ -202,7 +202,7 @@ export const tools: Tool[] = [
       'Custom code support'
     ],
     screenshots: [
-      'https://images.pexels.com/photos/326508/pexels-photo-326508.jpeg',
+      'https://framerusercontent.com/images/taEIqG4IODOLsMpmFmsybWAN6G8.png?scale-down-to=1024',
       'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg'
     ],
     videoUrl: 'https://www.youtube.com/watch?v=example',
