@@ -501,7 +501,7 @@ export const tools: Tool[] = [
       'Content summarization'
     ],
     screenshots: [
-      'https://miro.medium.com/v2/resize:fit:1400/1*zO3_gZUlblbgsZUHFEsvZQ.png',
+      'https://aview.in/wp-content/uploads/2023/10/Notion-AI.webp',
       'https://i.ytimg.com/vi/3ye-ocvVrKA/maxresdefault.jpg',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVKHESAs6XCz4sxJXaClwsQM-7fXq0BG9KWA&s'
     ],
