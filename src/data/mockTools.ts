@@ -18,7 +18,7 @@ export const tools: Tool[] = [
     ],
     screenshots: [
       'https://cdn.prod.website-files.com/64246652f82179d277df81be/6499a7cfa4a9263ca8e2d0ad_blog-47.jpg',
-      'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg'
+      'https://static.wixstatic.com/media/a77aa0_231b3fa856e74bd39c76a683a9c20e57~mv2.jpg/v1/fill/w_568,h_376,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/a77aa0_231b3fa856e74bd39c76a683a9c20e57~mv2.jpg'
     ],
     videoUrl: 'https://www.youtube.com/watch?v=example',
     websiteUrl: 'https://wix.com',
