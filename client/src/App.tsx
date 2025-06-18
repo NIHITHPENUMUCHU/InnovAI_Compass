@@ -6,7 +6,6 @@ import { HomePage } from './pages/HomePage';
 import { CategoryPage } from './pages/CategoryPage';
 import { ToolDetailsPage } from './pages/ToolDetailsPage';
 import { AboutPage } from './pages/AboutPage';
-import { AdminPage } from './pages/AdminPage';
 import { ScrollToTop } from './components/ui/ScrollToTop';
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
           <Route path="/categories" component={CategoryPage} />
           <Route path="/tool/:id" component={ToolDetailsPage} />
           <Route path="/about" component={AboutPage} />
-          <Route path="/admin" component={AdminPage} />
         </Switch>
         <ScrollToTop />
       </Layout>

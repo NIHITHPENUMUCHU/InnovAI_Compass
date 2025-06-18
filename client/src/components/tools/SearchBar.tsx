@@ -24,22 +24,42 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto">
       <motion.div 
-        className={`relative group ${isFocused ? 'scale-105' : ''}`}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        className="relative search-enhanced"
+        animate={{
+          scale: isFocused ? 1.02 : 1,
+        }}
+        transition={{ duration: 0.2 }}
       >
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-glow"></div>
+        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[var(--text-secondary)] w-5 h-5 z-10" />
         <input
           type="text"
           value={query}
           onChange={handleChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          placeholder="Explore AI tools..."
-          className="w-full px-4 py-3 pl-12 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-transparent focus:border-primary-500 dark:focus:border-primary-400 outline-none transition-all duration-300 relative z-10"
+          placeholder="Search AI tools, categories, or developers..."
+          className="w-full pl-12 pr-4 py-4 text-lg bg-transparent border-none outline-none font-kusanagi text-[var(--text-primary)] placeholder-[var(--text-secondary)] relative z-10"
         />
-        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 group-hover:text-primary-500 transition-colors duration-300 z-20" size={20} />
+        
+        {/* Typing Animation Effect */}
+        {isFocused && (
+          <motion.div
+            className="absolute inset-0 rounded-xl"
+            initial={{ background: 'transparent' }}
+            animate={{
+              background: [
+                'transparent',
+                'linear-gradient(90deg, transparent 0%, rgba(196, 108, 69, 0.05) 50%, transparent 100%)',
+                'transparent'
+              ]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        )}
       </motion.div>
     </form>
   );
