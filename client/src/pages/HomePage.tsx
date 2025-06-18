@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useLocation } from 'wouter';
+import { tools } from '../data/mockTools';
+import { Tool } from '../types';
 import { SearchBar } from '../components/tools/SearchBar';
 import { CategoryFilter } from '../components/tools/CategoryFilter';
 import { ToolGrid } from '../components/tools/ToolGrid';
-import { tools } from '../data/mockTools';
-import { Tool } from '../types';
-import { motion } from 'framer-motion';
 import { FloatingCard, MorphingBlob, ParallaxElement, GlassMorphism } from '../components/ui/3DElements';
 import { LoadingSpinner, CardSkeleton } from '../components/ui/LoadingSpinner';
-import { useAnimateOnVisible } from '../hooks/useIntersectionObserver';
+import { InteractiveBackground, GradientOrb } from '../components/ui/InteractiveBackground';
+import { ScrollToTop } from '../components/ui/ScrollToTop';
 
 export const HomePage = () => {
+  const [, setLocation] = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<'latest' | 'rating' | 'updated'>('latest');
@@ -23,23 +26,21 @@ export const HomePage = () => {
       const matchesSearch = 
         tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tool.features.some(feature => 
-          feature.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      const matchesCategory = !selectedCategory || tool.category.id === selectedCategory;
+        tool.developer.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const matchesCategory = selectedCategory ? tool.category.id === selectedCategory : true;
+      
       return matchesSearch && matchesCategory;
     });
 
-    filtered = filtered.sort((a, b) => {
-      if (sortBy === 'latest') {
-        return new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime();
-      } else if (sortBy === 'rating') {
-        return b.rating - a.rating;
-      } else if (sortBy === 'updated') {
-        return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime();
-      }
-      return 0;
-    });
+    // Sort tools
+    if (sortBy === 'rating') {
+      filtered.sort((a, b) => b.rating - a.rating);
+    } else if (sortBy === 'updated') {
+      filtered.sort((a, b) => new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime());
+    } else {
+      filtered.sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime());
+    }
 
     setFilteredTools(filtered);
     setCurrentPage(1);
@@ -50,17 +51,28 @@ export const HomePage = () => {
   const currentTools = filteredTools.slice(indexOfFirstTool, indexOfLastTool);
   const totalPages = Math.ceil(filteredTools.length / toolsPerPage);
 
-  const HoverableText = ({ text }: { text: string }) => (
+  const handleExploreTools = () => {
+    setLocation('/categories');
+  };
+
+  const handleLearnMore = () => {
+    setLocation('/about');
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
+  const VisibleText = ({ text }: { text: string }) => (
     <div className="flex flex-wrap justify-center">
       {text.split('').map((char, idx) => (
         <motion.span
           key={idx}
-          className="inline-block font-['KUSANAGI']"
+          className="inline-block font-kusanagi"
+          style={{ color: 'var(--primary)' }}
           whileHover={{
             y: -8,
             scale: 1.1,
-            color: 'var(--primary)',
-            textShadow: '0 0 20px rgba(var(--primary-rgb), 0.5)',
             transition: { duration: 0.3, ease: "easeOut" }
           }}
         >
@@ -71,114 +83,138 @@ export const HomePage = () => {
   );
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Interactive Background */}
+      <InteractiveBackground />
+      
       {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <ParallaxElement speed={-0.3} className="absolute top-20 left-10">
-          <MorphingBlob 
-            className="w-64 h-64" 
-            color="var(--primary)" 
-          />
-        </ParallaxElement>
-        <ParallaxElement speed={0.2} className="absolute bottom-20 right-10">
-          <MorphingBlob 
-            className="w-48 h-48" 
-            color="var(--primary-light)" 
-          />
-        </ParallaxElement>
+      <div className="absolute inset-0">
+        <GradientOrb className="w-96 h-96 top-20 left-10" delay={0} />
+        <GradientOrb className="w-64 h-64 bottom-20 right-10" delay={2} />
+        <GradientOrb className="w-48 h-48 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" delay={4} />
       </div>
 
-      <div className="relative z-10 space-y-12 pt-20">
+      <div className="relative z-10">
         {/* Hero Section */}
-        <motion.div 
-          className="text-center space-y-8 px-4"
+        <motion.section 
+          className="text-center py-20 mobile-padding"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <FloatingCard delay={0.2}>
-            <GlassMorphism className="inline-block px-6 py-3 rounded-full mb-6">
-              <span className="text-sm font-medium text-gradient font-['KUSANAGI']">
+            <GlassMorphism className="inline-block px-6 py-3 rounded-full mb-8">
+              <span className="text-sm font-medium text-gradient font-kusanagi">
                 Discover Next-Generation AI Tools
               </span>
             </GlassMorphism>
           </FloatingCard>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
-            <span className="block text-gradient font-['KUSANAGI']">
-              <HoverableText text="InnovAI" />
-            </span>
-            <span className="block text-[var(--text-primary)] font-['KUSANAGI'] mt-2">
-              <HoverableText text="Compass" />
-            </span>
-          </h1>
+          <div className="space-y-4">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-none">
+              <div className="text-gradient font-kusanagi mb-2">
+                <VisibleText text="InnovAI" />
+              </div>
+              <div className="text-[var(--text-primary)] font-kusanagi">
+                <VisibleText text="Compass" />
+              </div>
+            </h1>
+          </div>
 
           <FloatingCard delay={0.4}>
-            <p className="text-xl md:text-2xl text-[var(--text-secondary)] max-w-4xl mx-auto leading-relaxed font-['KUSANAGI'] font-medium">
+            <p className="text-xl md:text-2xl text-[var(--text-secondary)] max-w-4xl mx-auto leading-relaxed font-kusanagi font-medium mt-8">
               Navigate the future with precision. Discover cutting-edge AI tools that 
               <span className="text-gradient"> transform ideas into reality</span>.
             </p>
           </FloatingCard>
 
           <FloatingCard delay={0.6}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-              <button className="btn-primary text-lg px-8 py-4 font-['KUSANAGI']">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
+              <button 
+                onClick={handleExploreTools}
+                className="btn-primary text-lg px-8 py-4 font-kusanagi"
+              >
                 Explore Tools
               </button>
-              <button className="px-8 py-4 border-2 border-[var(--primary)] text-[var(--primary)] rounded-xl hover:bg-[var(--primary)] hover:text-white transition-all duration-300 font-['KUSANAGI'] font-semibold">
-                Learn More
+              <button 
+                onClick={handleLearnMore}
+                className="gradient-border"
+              >
+                <div className="gradient-border-inner">
+                  <span className="font-kusanagi font-semibold text-[var(--primary)]">
+                    Learn More
+                  </span>
+                </div>
               </button>
             </div>
           </FloatingCard>
-        </motion.div>
+        </motion.section>
 
         {/* Search Section */}
-        <FloatingCard delay={0.8} className="max-w-4xl mx-auto px-4">
-          <GlassMorphism className="p-8 rounded-2xl">
-            <SearchBar onSearch={setSearchQuery} />
-          </GlassMorphism>
-        </FloatingCard>
+        <section className="max-w-4xl mx-auto mobile-padding mb-12">
+          <FloatingCard delay={0.8}>
+            <GlassMorphism className="p-8 rounded-2xl">
+              <div className="search-enhanced">
+                <SearchBar onSearch={handleSearch} />
+              </div>
+            </GlassMorphism>
+          </FloatingCard>
+        </section>
         
         {/* Filters Section */}
-        <div className="max-w-7xl mx-auto px-4">
-          <GlassMorphism className="p-6 rounded-xl">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-              <CategoryFilter
-                selectedCategory={selectedCategory}
-                onCategoryChange={setSelectedCategory}
-              />
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as 'latest' | 'rating' | 'updated')}
-                className="px-4 py-3 rounded-xl bg-[var(--bg-primary)] border-2 border-[var(--border-primary)] text-[var(--text-primary)] font-['KUSANAGI'] font-medium focus:border-[var(--primary)] focus:outline-none transition-colors duration-300"
-              >
-                <option value="latest">Latest Release</option>
-                <option value="rating">Highest Rated</option>
-                <option value="updated">Recently Updated</option>
-              </select>
-            </div>
-          </GlassMorphism>
-        </div>
+        <section className="max-w-7xl mx-auto mobile-padding mb-12">
+          <motion.div 
+            className="animate-slide-up"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1 }}
+          >
+            <GlassMorphism className="p-6 rounded-xl">
+              <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                <CategoryFilter
+                  selectedCategory={selectedCategory}
+                  onCategoryChange={setSelectedCategory}
+                />
+                <div className="gradient-border">
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as 'latest' | 'rating' | 'updated')}
+                    className="gradient-border-inner bg-transparent border-none outline-none font-kusanagi font-medium text-[var(--text-primary)]"
+                  >
+                    <option value="latest">Latest Release</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="updated">Recently Updated</option>
+                  </select>
+                </div>
+              </div>
+            </GlassMorphism>
+          </motion.div>
+        </section>
 
         {/* Tools Grid Section */}
-        <div className="max-w-7xl mx-auto px-4">
+        <section className="max-w-7xl mx-auto mobile-padding mb-20">
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="mobile-grid">
               {Array.from({ length: 6 }).map((_, i) => (
                 <CardSkeleton key={i} />
               ))}
             </div>
           ) : filteredTools.length === 0 ? (
-            <div className="text-center py-16">
+            <motion.div 
+              className="text-center py-16"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="animate-bounce-in">
-                <h3 className="text-2xl font-bold text-[var(--text-primary)] font-['KUSANAGI'] mb-4">
+                <h3 className="text-2xl font-bold text-[var(--text-primary)] font-kusanagi mb-4">
                   No Tools Found
                 </h3>
-                <p className="text-[var(--text-secondary)] text-lg font-['KUSANAGI']">
+                <p className="text-[var(--text-secondary)] text-lg font-kusanagi">
                   No AI tools found matching your search criteria.
                 </p>
               </div>
-            </div>
+            </motion.div>
           ) : (
             <>
               <ToolGrid tools={currentTools} />
@@ -191,10 +227,10 @@ export const HomePage = () => {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setCurrentPage(i + 1)}
-                      className={`px-6 py-3 rounded-xl font-['KUSANAGI'] font-semibold transition-all duration-300 ${
+                      className={`px-6 py-3 rounded-xl font-kusanagi font-semibold transition-all duration-300 ${
                         currentPage === i + 1
-                          ? 'bg-[var(--primary)] text-white shadow-lg'
-                          : 'bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--primary)] hover:text-white'
+                          ? 'btn-primary'
+                          : 'card-gradient text-[var(--text-primary)] hover:bg-[var(--primary)] hover:text-white'
                       }`}
                     >
                       {i + 1}
@@ -204,8 +240,11 @@ export const HomePage = () => {
               )}
             </>
           )}
-        </div>
+        </section>
       </div>
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   );
 };
