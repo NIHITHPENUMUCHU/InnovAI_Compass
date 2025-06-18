@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
+import { useLocation } from 'wouter';
 import { FloatingCard, GlassMorphism } from '../components/ui/3DElements';
 import { InteractiveBackground, GradientOrb } from '../components/ui/InteractiveBackground';
 import { ScrollToTop } from '../components/ui/ScrollToTop';
+import { DeveloperProfile } from '../components/ui/DeveloperProfile';
 
 export const AboutPage = () => {
+  const [, setLocation] = useLocation();
   const features = [
     {
       title: 'Comprehensive AI Directory',

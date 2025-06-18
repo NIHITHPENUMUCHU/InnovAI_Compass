@@ -96,10 +96,12 @@ export const InteractiveBackground: React.FC<InteractiveBackgroundProps> = ({ cl
         particle.vx *= 0.99;
         particle.vy *= 0.99;
 
-        // Draw particle
+        // Draw particle with enhanced visibility
         ctx.save();
-        ctx.globalAlpha = particle.opacity;
-        ctx.fillStyle = particle.color;
+        ctx.globalAlpha = particle.opacity * 0.8;
+        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--primary');
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = getComputedStyle(document.documentElement).getPropertyValue('--primary');
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();

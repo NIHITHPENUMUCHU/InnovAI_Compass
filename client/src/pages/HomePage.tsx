@@ -63,13 +63,13 @@ export const HomePage = () => {
     setSearchQuery(query);
   };
 
-  const VisibleText = ({ text }: { text: string }) => (
+  const VisibleText = ({ text, useInnovaiColor = false }: { text: string; useInnovaiColor?: boolean }) => (
     <div className="flex flex-wrap justify-center">
       {text.split('').map((char, idx) => (
         <motion.span
           key={idx}
           className="inline-block font-kusanagi"
-          style={{ color: 'var(--primary)' }}
+          style={{ color: useInnovaiColor ? 'var(--text-innovai)' : 'var(--primary)' }}
           whileHover={{
             y: -8,
             scale: 1.1,
@@ -112,11 +112,11 @@ export const HomePage = () => {
 
           <div className="space-y-4">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-none">
-              <div className="text-gradient font-kusanagi mb-2">
-                <VisibleText text="InnovAI" />
+              <div className="font-kusanagi mb-2">
+                <VisibleText text="InnovAI" useInnovaiColor={true} />
               </div>
-              <div className="text-[var(--text-primary)] font-kusanagi">
-                <VisibleText text="Compass" />
+              <div className="font-kusanagi">
+                <VisibleText text="Compass" useInnovaiColor={false} />
               </div>
             </h1>
           </div>
