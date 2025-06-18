@@ -30,5 +30,23 @@ export const categories: Category[] = [
     name: 'Website Making',
     icon: 'globe',
     description: 'AI tools for creating and enhancing websites'
+  },
+  {
+    id: '6',
+    name: 'Video Creation',
+    icon: 'video',
+    description: 'AI-powered video editing and generation tools'
+  },
+  {
+    id: '7',
+    name: 'App Development',
+    icon: 'smartphone',
+    description: 'No-code and AI-powered app building platforms'
+  },
+  {
+    id: '8',
+    name: 'Daily Life',
+    icon: 'heart',
+    description: 'AI tools to enhance your everyday life and wellness'
   }
 ];

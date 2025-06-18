@@ -91,8 +91,7 @@ export const HomePage = () => {
       <div className="relative z-10 space-y-12 pt-20">
         {/* Hero Section */}
         <motion.div 
-          ref={heroRef as React.RefObject<HTMLDivElement>}
-          className={`text-center space-y-8 px-4 ${heroAnimation}`}
+          className="text-center space-y-8 px-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -141,10 +140,7 @@ export const HomePage = () => {
         </FloatingCard>
         
         {/* Filters Section */}
-        <div 
-          ref={gridRef as React.RefObject<HTMLDivElement>}
-          className={`${gridAnimation} max-w-7xl mx-auto px-4`}
-        >
+        <div className="max-w-7xl mx-auto px-4">
           <GlassMorphism className="p-6 rounded-xl">
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
               <CategoryFilter

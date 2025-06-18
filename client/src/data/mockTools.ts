@@ -1,6 +1,8 @@
 import { Tool } from '../types';
+import { expandedTools } from './expandedTools';
 
 export const tools: Tool[] = [
+  ...expandedTools,
   // Website Making Tools
   {
     id: '1',
