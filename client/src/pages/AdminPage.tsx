@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { supabase } from '../lib/supabase';
+import { apiClient } from '../lib/supabase';
 
 interface AdminFormData {
   email: string;
@@ -35,14 +35,11 @@ export const AdminPage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Check if user is already logged in
-    const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session?.user?.email === 'nihithpenumuchu07@gmail.com') {
-        setIsLoggedIn(true);
-      }
-    };
-    checkAuth();
+    // Check if user is already logged in from localStorage
+    const isAuthenticated = localStorage.getItem('adminAuthenticated') === 'true';
+    if (isAuthenticated) {
+      setIsLoggedIn(true);
+    }
   }, []);
 
   const onSubmit = async (data: AdminFormData) => {
@@ -50,22 +47,14 @@ export const AdminPage = () => {
     setError(null);
     
     try {
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email: data.email,
-        password: data.password,
-      });
-
-      if (signInError) throw signInError;
-
-      // Verify admin email
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user?.email !== 'nihithpenumuchu07@gmail.com') {
-        await supabase.auth.signOut();
-        throw new Error('Unauthorized access');
+      // Simple admin authentication - in production this should use proper authentication
+      if (data.email === 'nihithpenumuchu07@gmail.com' && data.password === 'admin123') {
+        localStorage.setItem('adminAuthenticated', 'true');
+        setIsLoggedIn(true);
+        setError(null);
+      } else {
+        throw new Error('Invalid credentials');
       }
-
-      setIsLoggedIn(true);
-      setError(null);
     } catch (err: any) {
       setError(err.message || 'Invalid credentials');
     } finally {
@@ -74,7 +63,7 @@ export const AdminPage = () => {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    localStorage.removeItem('adminAuthenticated');
     setIsLoggedIn(false);
   };
 
@@ -148,13 +137,7 @@ const ToolManagement: React.FC<ToolManagementProps> = ({ onLogout }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data, error } = await supabase
-          .from('categories')
-          .select('id, name')
-          .order('name');
-        
-        if (error) throw error;
-        
+        const data = await apiClient.get('/categories');
         setCategories(data || []);
       } catch (err) {
         console.error('Error fetching categories:', err);
@@ -164,23 +147,7 @@ const ToolManagement: React.FC<ToolManagementProps> = ({ onLogout }) => {
 
     const fetchTools = async () => {
       try {
-        const { data, error } = await supabase
-          .from('tools')
-          .select(`
-            id,
-            name,
-            description,
-            developer,
-            pricing_type,
-            rating,
-            review_count,
-            created_at,
-            categories (name)
-          `)
-          .order('created_at', { ascending: false });
-        
-        if (error) throw error;
-        
+        const data = await apiClient.get('/tools');
         setTools(data || []);
       } catch (err) {
         console.error('Error fetching tools:', err);
@@ -197,45 +164,27 @@ const ToolManagement: React.FC<ToolManagementProps> = ({ onLogout }) => {
       const toolData = {
         name: data.name,
         description: data.description,
-        category_id: data.category_id,
+        categoryId: data.category_id,
         developer: data.developer,
-        pricing_type: data.pricing_type,
-        pricing_amount: data.pricing_amount ? parseFloat(data.pricing_amount.toString()) : null,
+        pricingType: data.pricing_type,
+        pricingAmount: data.pricing_amount ? data.pricing_amount.toString() : null,
         features: data.features.split('\n').filter((f: string) => f.trim() !== ''),
         screenshots: data.screenshots.split('\n').filter((s: string) => s.trim() !== ''),
-        video_url: data.video_url || null,
-        website_url: data.website_url,
-        release_date: data.release_date,
-        rating: data.rating || 0,
-        review_count: data.review_count || 0
+        videoUrl: data.video_url || null,
+        websiteUrl: data.website_url,
+        releaseDate: data.release_date,
+        rating: data.rating ? data.rating.toString() : "0",
+        reviewCount: data.review_count || 0
       };
 
-      const { error } = await supabase.from('tools').insert([toolData]);
-
-      if (error) throw error;
+      await apiClient.post('/tools', toolData);
 
       setSuccess(true);
       reset();
       
       // Refresh tools list
-      const { data: newTools, error: fetchError } = await supabase
-        .from('tools')
-        .select(`
-          id,
-          name,
-          description,
-          developer,
-          pricing_type,
-          rating,
-          review_count,
-          created_at,
-          categories (name)
-        `)
-        .order('created_at', { ascending: false });
-      
-      if (!fetchError) {
-        setTools(newTools || []);
-      }
+      const newTools = await apiClient.get('/tools');
+      setTools(newTools || []);
       
       setTimeout(() => setSuccess(false), 3000);
     } catch (err: any) {

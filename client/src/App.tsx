@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Route, Switch } from 'wouter';
 import { ThemeProvider } from './context/ThemeContext';
 import { Layout } from './components/layout/Layout';
 import { HomePage } from './pages/HomePage';
@@ -12,18 +12,16 @@ import { ScrollToTop } from './components/ui/ScrollToTop';
 function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/categories" element={<CategoryPage />} />
-            <Route path="/tool/:id" element={<ToolDetailsPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/admin" element={<AdminPage />} />
-          </Routes>
-          <ScrollToTop />
-        </Layout>
-      </Router>
+      <Layout>
+        <Switch>
+          <Route path="/" component={HomePage} />
+          <Route path="/categories" component={CategoryPage} />
+          <Route path="/tool/:id" component={ToolDetailsPage} />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/admin" component={AdminPage} />
+        </Switch>
+        <ScrollToTop />
+      </Layout>
     </ThemeProvider>
   );
 }

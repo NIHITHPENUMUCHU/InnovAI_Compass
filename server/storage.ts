@@ -160,6 +160,8 @@ export class MemStorage implements IStorage {
       videoUrl: tool.videoUrl ?? null,
       rating: tool.rating ?? "0",
       reviewCount: tool.reviewCount ?? 0,
+      features: tool.features ?? [],
+      screenshots: tool.screenshots ?? [],
       createdAt: new Date(),
       updatedAt: new Date(),
       lastUpdated: new Date()

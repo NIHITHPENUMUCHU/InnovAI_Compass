@@ -1,12 +1,12 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useRoute } from 'wouter';
 import { RatingStars } from '../components/tools/RatingStars';
 import { tools } from '../data/mockTools';
 import { ExternalLink, Calendar } from 'lucide-react';
 
 export const ToolDetailsPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const tool = tools.find((t) => t.id === id);
+  const [match, params] = useRoute('/tool/:id');
+  const tool = tools.find((t) => t.id === params?.id);
 
   if (!tool) {
     return (
