@@ -107,7 +107,7 @@ export const InteractiveBackground: React.FC<InteractiveBackgroundProps> = ({ cl
         ctx.fill();
         ctx.restore();
 
-        // Draw connections
+        // Draw connections with enhanced visibility
         particles.forEach(otherParticle => {
           if (particle.id >= otherParticle.id) return;
           
@@ -117,9 +117,11 @@ export const InteractiveBackground: React.FC<InteractiveBackgroundProps> = ({ cl
           
           if (distance < 100) {
             ctx.save();
-            ctx.globalAlpha = (100 - distance) / 100 * 0.2;
-            ctx.strokeStyle = 'var(--primary)';
-            ctx.lineWidth = 1;
+            ctx.globalAlpha = (100 - distance) / 100 * 0.4;
+            ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--primary');
+            ctx.lineWidth = 1.5;
+            ctx.shadowBlur = 3;
+            ctx.shadowColor = getComputedStyle(document.documentElement).getPropertyValue('--primary');
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);

@@ -264,7 +264,7 @@ export const AboutPage = () => {
                   Explore our comprehensive directory of AI tools and discover the perfect solution for your next project.
                 </p>
                 <button 
-                  onClick={() => window.location.href = '/categories'}
+                  onClick={() => setLocation('/categories')}
                   className="btn-primary text-lg px-8 py-4 font-kusanagi"
                 >
                   Explore AI Tools
@@ -273,6 +273,9 @@ export const AboutPage = () => {
             </FloatingCard>
           </motion.div>
         </section>
+
+        {/* Developer Details Section */}
+        <DeveloperProfile />
       </div>
 
       {/* Scroll to Top Button */}
