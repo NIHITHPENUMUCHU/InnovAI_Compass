@@ -1,7 +1,7 @@
 import React from 'react';
 import { Star, ExternalLink } from 'lucide-react';
 import { Tool } from '../../types';
-import { Link } from 'react-router-dom';
+import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 
 interface ToolCardProps {
